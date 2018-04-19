@@ -1,0 +1,24 @@
+{
+  "name": "unstuck",
+  "version": "0.0.1",
+  "description": "a smol utility to unstick (and restick) your header on scroll…",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jssee/unstuck.git"
+  },
+  "keywords": [
+    "header",
+    "fixed",
+    "scroll"
+  ],
+  "author": "Jesse Hoyos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jssee/unstuck/issues"
+  },
+  "homepage": "https://github.com/jssee/unstuck#readme"
+}
