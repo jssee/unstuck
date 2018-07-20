@@ -1,35 +1,37 @@
-const header = document.querySelector('.uns-target');
-console.log('testing');
-// Scrolling default variables
+let header = document.querySelector('.uns-target');
 let scrolling = false;
-let prevTop = 0;
+let lastTop = 0;
 let currentTop = 0;
-let scrollDelta = 10;
-let scrollOffset = 150;
+let delta = 10;
+let offset = 150;
 
-const scrollListener = () => {
+function scrollHandler() {
   window.addEventListener('scroll', () => {
-    scrolling ? true : (scrolling = true), requestAnimationFrame(hideHeader);
+    if (!scrolling) {
+      scrolling = true;
+      requestAnimationFrame(updateHeader);
+    }
   });
-};
+}
 
-const hideHeader = () => {
-  let currentTop = document.scrollingElement.scrollTop;
+function updateHeader() {
+  currentTop = document.scrollingElement.scrollTop;
 
-  checkStickyNav(currentTop);
-
-  prevTop = currentTop;
+  checkScrollDirection(currentTop);
+  lastTop = currentTop;
   scrolling = false;
-};
+}
 
-const checkStickyNav = currentTop => {
-  let scrollingUp = prevTop - currentTop > scrollDelta;
-  let scrollingDown =
-    currentTop - prevTop > scrollDelta && currentTop > scrollOffset;
+function checkScrollDirection(currentTop) {
+  let scrollingUp = lastTop - currentTop > delta;
+  let scrollingDown = currentTop - lastTop > delta && currentTop > offset;
 
-  scrollingUp && header.classList.remove('isUnstuck');
+  if (!!scrollingUp) {
+    header.classList.remove('isUnstuck');
+  }
+  if (!!scrollingDown) {
+    header.classList.add('isUnstuck');
+  }
+}
 
-  scrollingDown && header.classList.add('isUnstuck');
-};
-
-requestAnimationFrame(scrollListener);
+requestAnimationFrame(scrollHandler);
